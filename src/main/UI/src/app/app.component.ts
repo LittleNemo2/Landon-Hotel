@@ -27,6 +27,9 @@ export class AppComponent implements OnInit{
   request!:ReserveRoomRequest;
   currentCheckInVal!:string;
   currentCheckOutVal!:string;
+  englishWelcomeMessage!: string;
+  frenchWelcomeMessage!: string;
+  presentationTimeMessage!: string;
 
     ngOnInit(){
       this.roomsearch= new FormGroup({
@@ -44,16 +47,30 @@ export class AppComponent implements OnInit{
       this.currentCheckInVal = x.checkin;
       this.currentCheckOutVal = x.checkout;
     });
+      this.getWelcomeMessages();
+      this.getPresentationTime();
+  }
+  getWelcomeMessages() {
+    this.httpClient.get<{english: string, french: string}>(this.baseURL + '/api/messages/welcome')
+      .subscribe(messages => {
+        this.englishWelcomeMessage = messages.english;
+        this.frenchWelcomeMessage = messages.french;
+      });
   }
 
+  getPresentationTime() {
+    this.httpClient.get(this.baseURL + '/api/messages/presentation-time', {responseType: 'text'})
+      .subscribe(message => {
+        this.presentationTimeMessage = message;
+      });
+  }
     onSubmit({value,valid}:{value:Roomsearch,valid:boolean}){
       this.getAll().subscribe(
 
         rooms => {console.log(Object.values(rooms)[0]);this.rooms=<Room[]>Object.values(rooms)[0]; }
-
-
       );
     }
+
     reserveRoom(value:string){
       this.request = new ReserveRoomRequest(value, this.currentCheckInVal, this.currentCheckOutVal);
 

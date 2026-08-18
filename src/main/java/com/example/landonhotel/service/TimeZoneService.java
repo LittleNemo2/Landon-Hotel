@@ -1,10 +1,12 @@
 package com.example.landonhotel.service;
 
+import org.springframework.stereotype.Service;
+
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
-
+@Service
 public class TimeZoneService {
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
 
@@ -21,6 +23,6 @@ public class TimeZoneService {
         return "The online, live presentation at the Landon Hotel will be held at "
                 + easternTime + " ET, "
                 + mountainTime + " MT, "
-                + utcTime + " UTC. ";
+                + utcTime + " UTC.";
     }
 }
