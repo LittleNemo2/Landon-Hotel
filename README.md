@@ -1,5 +1,8 @@
 # Landon Hotel: Multithreaded Spring Boot + Angular App
 
+[![CI](https://github.com/LittleNemo2/Landon-Hotel/actions/workflows/ci.yml/badge.svg)](https://github.com/LittleNemo2/Landon-Hotel/actions/workflows/ci.yml)
+![Coverage](https://raw.githubusercontent.com/LittleNemo2/Landon-Hotel/badges/jacoco.svg)
+
 A hotel reservation app with a Spring Boot back end and an Angular front end. I extended it with multithreaded localization, time zone conversion, and multi-currency pricing, and packaged it as a single Docker image.
 
 ## What I built
